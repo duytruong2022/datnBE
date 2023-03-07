@@ -1,0 +1,6 @@
+node_modules
+.gitlab
+mongo
+logs
+sftp-data
+redis

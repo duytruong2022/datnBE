@@ -1,0 +1,15 @@
+{
+    "get": {
+        "notExists": {
+            "planning": "Planning does not exist"
+        }
+    },
+    "patch": {
+        "notExists": {
+            "baselineConfiguration": "Baseline configuration not exist"
+        }
+    },
+    "delete": {
+        "success": "Delete baseline configuration successfully"
+    }
+}

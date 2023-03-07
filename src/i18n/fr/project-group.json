@@ -1,0 +1,12 @@
+{
+    "message": {
+        "error": {
+            "itemNotExist": "Project group does not exist",
+            "memberGroupExist": "Members of the project group already existed",
+            "projectNotExist": "Project does not exist",
+            "projectProfileNotExist": "Project profile does not exist",
+            "nameExisted": "Project group name already existed",
+            "insufficientPermission": "You don't have sufficient permission to perform this action"
+        }
+    }
+}

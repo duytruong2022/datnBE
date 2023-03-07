@@ -1,0 +1,12 @@
+{
+    "error": {
+        "notExist": "Calendar does not exist",
+        "config": {
+            "notExist": "Calendar config does not exist"
+        },
+        "project": {
+            "notExist": "Project does not exist"
+        },
+        "duplicatedName": "Calendar name is already exist"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "item": {
+        "name": {
+            "exists": "Project profile name already exists"
+        },
+        "profile.notFound": "Project profile does not exist",
+        "project.notFound": "Project does not exist"
+    },
+    "delete": {
+        "item": {
+            "alreadyAssigned": {
+                "group": "Project profile already assigned to other group",
+                "user": "Project profile already assigned to other user",
+                "pbs": "Project profile already assigned to other user in PBS group"
+            }
+        }
+    }
+}

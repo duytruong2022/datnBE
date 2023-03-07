@@ -1,0 +1,35 @@
+{
+    "error": {
+        "project": {
+            "notFound": "Project not found",
+            "wrongPassPharse": "Wrong pass pharse"
+        },
+        "path": {
+            "exist": "There is already a file or folder with the same name",
+            "notExist": "Path does not exist",
+            "notChangeable": "The path is not changable",
+            "depthOverLimit": "The folder level depth has reached the limit"
+        },
+        "insufficientPermission": "You don't have sufficient permission to perform this action",
+        "destination": {
+            "notFound": "Destination path does not exist"
+        },
+        "source": {
+            "notFound": "Source path does not exist"
+        },
+        "newPath": {
+            "exist": "There is already a file or folder with the same name"
+        },
+        "file": {
+            "notFound": "File not found"
+        },
+        "extension": {
+            "notAllow": "This file type not allow"
+        }
+    },
+    "success": {
+        "upload": "The file has been uploaded to FTP server",
+        "delete": "The content has been deleted",
+        "move": "The folder has been moved"
+    }
+}

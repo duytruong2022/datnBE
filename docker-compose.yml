@@ -1,0 +1,106 @@
+# Only for develop environment
+version: '3'
+
+services:
+  mongo1:
+    hostname: mongo1
+    container_name: mongo1
+    image: mongo:5
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    restart: always
+    env_file:
+      - .env
+    entrypoint: [ "./scripts/setup.sh" ]
+    volumes:
+      - ./mongo/data1/db:/data/db
+      - ./mongo/keys:/keys
+      - ./scripts:/scripts
+    networks:
+      - pmf-network
+
+  mongo2:
+    hostname: mongo2
+    container_name: mongo2
+    image: mongo:5
+    expose:
+      - 27017
+    ports:
+      - 27018:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0", "--journal", "--dbpath", "/data/db", "--keyFile", "/keys/mongoKeyFile.key" ]
+    volumes:
+      - ./mongo/data2/db:/data/db
+      - ./mongo/keys:/keys
+    networks:
+      - pmf-network
+
+  mongo3:
+    hostname: mongo3
+    container_name: mongo3
+    image: mongo:5
+    expose:
+      - 27017
+    ports:
+      - 27019:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0", "--journal", "--dbpath", "/data/db", "--keyFile", "/keys/mongoKeyFile.key" ]
+    volumes:
+      - ./mongo/data3/db:/data/db
+      - ./mongo/keys:/keys
+    networks:
+      - pmf-network
+
+  sftp:
+    image: atmoz/sftp:debian
+    hostname: pmf-sftp
+    container_name: pmf-sftp
+    env_file:
+      - .env
+    volumes:
+        - ./sftp-data/share:/home/${SFTP_USERNAME}/share
+    ports:
+        - "2222:22"
+    command: ${SFTP_USERNAME}:${SFTP_PASSWORD}:1001:100:share
+    networks:
+      - pmf-network
+
+  redis:
+    image: redis:7.0.5
+    hostname: pmf-redis
+    container_name: pmf-redis
+    ports:
+      - 6379:6379
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./redis/data:/data
+      - ./redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - pmf-network
+
+  pmf-api:
+    build:
+      context: .
+    image: pmf-api
+    container_name: pmf-api
+    env_file:
+      - .env
+    networks:
+      - pmf-network
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./logs:/usr/src/app/logs
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3
+
+networks:
+  pmf-network:
+    name: pmf-network
+    driver: bridge

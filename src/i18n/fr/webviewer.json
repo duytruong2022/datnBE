@@ -1,0 +1,18 @@
+{
+    "message": {
+        "success": {
+            "auth": "Webviewer Backend authentication successful!",
+            "importObjects": "Import files successful!",
+            "closeFile": "Close current file successful!",
+            "openFile": "Your file(s) has been opened"
+        },
+        "error": {
+            "session": {
+                "notFound": "Session not found."
+            },
+            "file": {
+                "notFound": "File not found."
+            }
+        }
+    }
+}

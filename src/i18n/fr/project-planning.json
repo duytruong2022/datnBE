@@ -1,0 +1,142 @@
+{
+    "exists": {
+        "name": "The name is already exists",
+        "link": "This link is already exists",
+        "planningId": "Planning ID is already exists",
+        "planningName": "Planning name is already exists",
+        "resourceName": "The resource name is already exists",
+        "resourceGroupName": "The resource group name is already exists",
+        "taskFieldName": "The field name is already exists",
+        "appearanceProfileName": "The appearance profile name is already exists",
+        "baselineName": "The baseline name is already exists",
+        "importPlanningName": "This planning name is already exists. Please change file name to import!",
+        "ganttId": "The activity ID is already exists",
+        "file": "This file is already exists"
+    },
+    "exceed": {
+        "children": "The number of children exceeds limit"
+    },
+    "invalid": {
+        "task": {
+            "delegated": "The task list contain some delegated item",
+            "haveParent": "Can not use the parent task to delegate",
+            "dataType": "The value doesn't correct with the data type",
+            "milestoneType": "There can be only milestones in Top-Down and Bottom-Up folder",
+            "notDelegated": "The task is not delegated",
+            "isParent": "Can not cancel delegation of parent task",
+            "notDelegatedList": "The task list contains some items that have not been delegated",
+            "notOriginalPlanning": "The task list contains some items that are not part of original planning"
+        },
+        "planningIds": "Some planning does not exit",
+        "planningId": "Can not update planning ID",
+        "synthesized": "This planning was synthesized from other planning",
+        "parent": {
+            "milestone": "Cannot create sub-task for milestone"
+        },
+        "link": "New start or finish date value is not compatible with link type",
+        "templateName": "Can not update the name of template planning"
+    },
+    "cannotCreateTask.milestoneFolder": "Cannot create task in a milestone folder",
+    "notExists": {
+        "_id": "The task does not exist",
+        "linkId": "This link does not exist",
+        "ftpPath": "Path does not exist",
+        "planning": "Planning does not exist",
+        "task": "Task does not exist",
+        "taskIds": "Some task does not exist",
+        "fileId": "This file does not exist",
+        "resourceId": "This resource does not exist",
+        "parentResourceId": "Parent resource does not exist",
+        "resourceGroupId": "This resource group does not exist",
+        "appearanceProfileId": "This appearance profile does not exist",
+        "resourceIds": "Some resource does not exist",
+        "resourceGroupIds": "Some resource group does not exist",
+        "taskField": "Task field does not exist",
+        "parentId": "The parentId is invalid",
+        "source": "Source does not exist",
+        "target": "Target does not exist",
+        "sessionToken": "Your 3D Webviewer session is expired"
+    },
+    "template": "Do not allow update template planning",
+    "message": {
+        "planning.notFound": "Planning not found",
+        "oneOfFileNotFound": "One of planning files not found",
+        "oneOfTaskNotFound": "One of task not found",
+        "applyBaseline": "Apply baseline successful",
+        "resetBaseline": "Reset baseline successful",
+        "projectStart": "Can not update project start",
+        "updateDelegation": "Update delegation successful",
+        "updateOriginalPlanning": "Update milestones successful",
+        "disableBottomup": "Bottomup has been disabled for this planning",
+        "disableTopdown": "Topdown has been disabled for this planning",
+        "tasksContainMilestone": "Selected tasks contain milestone",
+        "noResource": "This planning has no resource"
+    },
+    "task": {
+        "content": "Content",
+        "updateParentType": "Do not allow to update parent task type",
+        "error": {
+            "constraint": {
+                "start": {
+                    "snet": "Start must not be earlier than {date} UTC",
+                    "snlt": "Start must not be later than {date} UTC",
+                    "mso": "Start must be equal to {date} UTC"
+                },
+                "finish": {
+                    "fnet": "Finish must not be earlier than {date} UTC",
+                    "fnlt": "Finish must not be later than {date} UTC",
+                    "mfo": "Finish must be equal to {date} UTC"
+                }
+            },
+            "asap": "The start date must not be sooner than {date} UTC",
+            "alap": "The finish date must not be later than {date} UTC"
+        },
+        "delegatedTask": "Task after delegating can not be updated activity ID",
+        "synthesizedTask": "Task after synthesizing can not be updated activity ID",
+        "clonedTask": "Cannot update activity ID for cloned task",
+        "milestone": {
+            "id": {
+                "delegate": {
+                    "delegatedPlanning": {
+                        "nonStatic": "FLTD{linkTo}D-{id}",
+                        "static": "CFTD{linkTo}D-{id}"
+                    },
+                    "templatePlanning": {
+                        "nonStatic": "FLBU{linkTo}D-{id}",
+                        "static": "CFBU{linkTo}D-{id}"
+                    }
+                },
+                "topDown": {
+                    "nonStatic": "FLTD{linkTo}C-{id}-{counter}",
+                    "static": "CFTD{linkTo}C-{id}-{counter}"
+                },
+                "bottomUp": {
+                    "nonStatic": "FLBU{linkTo}C-{id}-{counter}",
+                    "static": "CFBU{linkTo}C-{id}-{counter}"
+                },
+                "update": "IMTD{linkTo}D-{id}",
+                "updateBottomup": "IMBU{linkTo}D-{id}"
+            }
+        }
+    },
+    "link": {
+        "error": {
+            "finishToStart": "The target task can't start before the source task ends",
+            "startToStart": "The target task can't start until the source task starts",
+            "finishToFinish": "The target task can't end before the source task ends",
+            "startToFinish": "The target task can't end before the source task starts"
+        }
+    },
+    "importXLM": {
+        "error": {
+            "isReplace": "Can't replace this planning because of not equal p6Id",
+            "delegatedPlanning": "Can't append the data to the end of the current planning because this planning is delegated planning",
+            "p6TaskIds": "{ids} p6Id already exists, please change its to import"
+        }
+    },
+    "resource": {
+        "successful": {
+            "loadResource": "Load resource successful"
+        }
+    }
+}

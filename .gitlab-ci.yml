@@ -1,0 +1,28 @@
+before_script:
+    - whoami
+    - echo $PATH
+    - apt-get update -qq && apt-get install
+    - export PATH="/home/ubuntu/.npm-global/bin:/home/ubuntu/.nvm/versions/node/v14.18.1/bin:$PATH"
+    - echo $PATH
+
+stages:
+    - deploy-dev
+
+deploy-dev:
+    stage: deploy-dev
+    script:
+        - echo "Deploying develop branch"
+        - cd ~/app/pmf-3dwebviewer-backend/
+        - git branch
+        - git pull origin develop
+        - echo $PATH
+        - whoami
+        - pwd
+        - yarn --version
+        - yarn install
+        - yarn build
+        - echo "Develop branch deployed successful"
+    tags:
+        - shell_executor
+    only:
+        - develop

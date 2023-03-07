@@ -1,0 +1,7 @@
+{
+  "401": "Unauthorized",
+  "400": "Bad Request",
+  "403": "Forbidden",
+  "500": "System Error with id = {param}",
+  "system.error": "System Error, please try again!"
+}

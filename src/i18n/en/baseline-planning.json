@@ -1,0 +1,17 @@
+{
+    "get": {
+        "notExists": {
+            "planning": "Planning does not exist",
+            "baselinePlanning": "Baseline planning does not exist",
+            "taskIds": "Some task does not exist"
+        }
+    },
+    "post": {
+        "exists": {
+            "baselineName": "The baseline name is already exists"
+        }
+    },
+    "delete": {
+        "success": "Delete baseline planning successfully"
+    }
+}

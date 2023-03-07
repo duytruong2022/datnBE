@@ -1,0 +1,60 @@
+{
+    "field": {
+        "email": "Email",
+        "password": "Password",
+        "fullName": "fullName"
+    },
+    "create": {
+        "email.duplicate": "Email already exists!",
+        "country.notFound": "Country does not exist!",
+        "group.notFound": "There are some groups which do not exist!",
+        "securityProfile.notFound": "There are some constellation profiles which do not exist!",
+        "projectProfile.notFound": "There are some project profiles which do not exist!",
+        "viewer3dProfile.notFound": "There are some 3D viewer profiles which do not exist!",
+        "project.notFound": "There are some project which do not exist!"
+    },
+    "update": {
+        "group.notExists": "Group does not exist!",
+        "group.exists": "Group already exists!",
+        "projectGroup.exists": "Project group already exists!",
+        "projectGroup.notExists": "Project group does not exist!",
+        "project.exists": "Project already exists!",
+        "project.notExists": "Project does not exist!",
+        "constellationAccessModule": "User in some project or constellation group",
+        "viewer3dAccessModule": "User in some 3d viewer group"
+    },
+    "contact": {
+        "error.sendEmail": "Failed to send mail!"
+    },
+    "get": {
+        "wrong.id": "User does not exist!",
+        "accessModule.notFound":"Access Module does not exist!",
+        "group.notExists": "Group does not exist!"
+    },
+    "import": {
+        "email.duplicate": "Email already exists!",
+        "country.notFound": "Country does not exist!",
+        "group.notFound": "There are some groups which do not exist!",
+        "securityProfile.notFound": "There are some constellation profiles which do not exist!",
+        "projectProfile.notFound": "There are some project profiles which do not exist!",
+        "viewer3dProfile.notFound": "There are some 3D viewer profiles which do not exist!",
+        "project.notFound": "Project does not exist!"
+    },
+    "errors": {
+        "invalidPassword": "Invalid password",
+        "userNotFound": "User does not exist",
+        "insufficientPermission": "You don't have sufficient permission to perform this action"
+    },
+    "import-ldap": {
+        "error.configLdap": "LDAP server is not available!",
+        "error.baseUsersDn": "Invalid base users distinguished name",
+        "error.serverUrl": "Invalid LDAP server url",
+        "error.notConfig": "LDAP server  is not configured correctly"
+    },
+    "auth-ldap": {
+        "error.authentication": "The authentication failed"
+    },
+    "delete": {
+        "deleteYourself": "Can't delete yourself"
+    }
+}

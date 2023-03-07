@@ -1,0 +1,25 @@
+{
+    "get": {
+        "notExists": {
+            "project": "Project does not exists",
+            "activityCodeValue": "Activity code value does not exists",
+            "taskIds": "Some task does not exists",
+            "activityCode": "Activity code does not exists",
+            "parentFolder": "Parent folder does not exists"
+        }
+    },
+    "post": {
+        "exists": {
+            "activityCode": "There is already a activity code with the same name",
+            "activityCodeValue": "The name of activity code value is already exists",
+            "activityCodeValueColor": "The color of activity code value  is already exists"
+        },
+        "failedDependency": {
+            "activityCodeValue": "The length of the code value exceeds the limit"
+        }
+    },
+    "delete": {
+        "codeValue.success": "Delete activity code value successfully",
+        "code.success": "Delete activity code successfully"
+    }
+}

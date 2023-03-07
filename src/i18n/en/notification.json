@@ -1,0 +1,9 @@
+{
+    "errors": {
+        "invalidIdList": "One of notification ids is invalid",
+        "notFound": "Notification not found",
+        "insufficientPermission": "You don't have sufficient permission to perform this action",
+        "notPending": "This notification is not pending",
+        "forbidden": "You don't have sufficient permission to perform this action"
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "errors": {
+        "supportRequest.notExist": "Support request does not exist"
+    },
+    "exportData": {
+        "columns": {
+            "email": "Email",
+            "phoneNumber": "Phone number",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "category": "Category",
+            "priority": "Priority",
+            "version": "Version",
+            "site": "Site",
+            "object": "Object",
+            "reference": "Reference",
+            "detail": "Detail"
+        },
+        "fieldData": {
+            "incident": "Incident",
+            "request": "Request",
+            "idea_suggestion": "Idea/Suggestion",
+            "spacialytic_platform": "Spacialytic Platform",
+            "spacialytic_3dwebviewer": "Spacialytic 3D Viewer",
+            "spacialytic_constellation": "Spacialytic Constellation",
+            "hight": "High",
+            "medium": "Medium",
+            "low": "Low"
+        }
+    },
+    "sendEmail": {
+        "subject": "Support request",
+        "error": "Failed to send mail!"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "errors": {
+        "pbsGroup.notExist": "Pbs Group does not exist",
+        "pbsGroup.exist": "Pbs Group name already exists",
+        "parentId.notExist": "Parent pbs does not exist",
+        "project.notExist": "Project does not exist",
+        "group.notExist": "Group does not exist",
+        "user.notExist": "User does not exist",
+        "pbsGroup.maxLevel": "cannot create more than {level} levels of pbs",
+        "insufficientPermission": "You don't have sufficient permission to perform this action"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "message": {
+        "error": {
+            "itemNotExist": "Group does not exist",
+            "memberGroupExist": "Members of the group already existed",
+            "securityProfileNotExist": "Constellation profile does not exist",
+            "viewer3dProfileNotExist": "3D viewer profile does not exist",
+            "nameExisted": "Group name already existed"
+        }
+    }
+}

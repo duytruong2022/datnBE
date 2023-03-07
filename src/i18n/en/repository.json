@@ -1,0 +1,34 @@
+{
+    "error": {
+        "file": {
+            "notExist": "File  does not exist",
+            "notFound": "File not found"
+        },
+        "folder": {
+            "notExist": "Folder does not exist",
+            "exist": "Folder already exists"
+        },
+        "path": {
+            "exist": "There is already a file or folder with the same name",
+            "notExist": "Path does not exist",
+            "notChangeable": "The path is not changable",
+            "depthOverLimit": "The folder level depth has reached the limit"
+        },
+        "destination": {
+            "notFound": "Destination path does not exist"
+        },
+        "source": {
+            "notFound": "Source path does not exist"
+        },
+        "newPath": {
+            "exist": "There is already a file or folder with the same name"
+        }
+    },
+    "success": {
+        "process": "Your file is being processed",
+        "save": "Your file is being saved to ftp server",
+        "move": "The folder has been moved",
+        "upload": "The file has been uploaded"
+    },
+    "defaultRootFolderName": "Repository"
+}

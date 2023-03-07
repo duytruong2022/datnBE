@@ -1,0 +1,8 @@
+{
+    "message": {
+        "error": {
+            "itemNotExist": "Access Log does not exist",
+            "forbidden": "You don't have sufficient permission to perform this action"
+        }
+    }
+}

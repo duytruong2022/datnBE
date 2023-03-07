@@ -1,0 +1,16 @@
+{
+    "item": {
+        "name": {
+            "exists": "3D viewer profile name already exists"
+        },
+        "notFound": "3D viewer profile does not exist"
+    },
+    "delete": {
+        "item": {
+            "alreadyAssigned": {
+                "user": "3D viewer profile already assigned to other user",
+                "group": "3D viewer profile already assigned to other group"
+            }
+        }
+    }
+}

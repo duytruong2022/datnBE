@@ -1,0 +1,18 @@
+{
+    "errors": {
+        "getPostalCode": "Unable to geocode",
+        "itemNotExist": "Project does not exist",
+        "duplicateName": "This name is already used for another project",
+        "coordinatesNotFound": "Cannot get coordinates for this postal code",
+        "adminNotExist": "Admin does not exist",
+        "insufficientPermission": "You don't have sufficient permission to perform this action",
+        "adminNotInConstellation": "Project admin has no access to constellation module",
+        "userNotExist": "User does not exist",
+        "dayType": {
+            "notFound": "Day type not found"
+        }
+    },
+    "success": {
+        "delete": "Delete project successfully"
+    }
+}

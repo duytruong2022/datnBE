@@ -1,0 +1,15 @@
+{
+    "item": {
+        "name": {
+            "exists": "Constellation profile name already exists"
+        },
+        "notFound": "Constellation profile does not exist",
+        "project.notFound": "Project does not exist"
+    },
+    "delete": {
+        "item": {
+            "assignedToGroup": "This constellation profile is assigned to a group",
+            "assignedToUser": "This constellation profile is assigned to a user"
+        }
+    }
+}
