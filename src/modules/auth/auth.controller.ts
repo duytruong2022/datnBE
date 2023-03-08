@@ -48,7 +48,6 @@ import { CountryMongoService } from '../common/services/country.mongo.service';
 import { NotificationMongoService } from '../notification/services/notification.mongo.service';
 import { NotificationTypes } from '../notification/notification.constant';
 import { ProjectMongoService } from '../project/services/project.mongo.service';
-import { Types } from 'mongoose';
 import { UserMongoService } from '../user/services/user.mongo.service';
 import {
     AuditLogModules,
@@ -71,7 +70,6 @@ import ConfigKey from 'src/common/config/config-key';
 import { UserDocument } from '../user/mongo-schemas/user.schema';
 import { ParseObjectIdPipe } from 'src/common/pipe/objectId.validation.pipe';
 import { ObjectId } from 'mongodb';
-import { RedisService } from 'src/common/services/redis.service';
 import uniq from 'lodash/uniq';
 import {
     ProjectPermissions,
@@ -93,7 +91,6 @@ export class AuthController {
         private readonly userRegisterHistoryService: UserRegisterHistoryMongoService,
         private jwtService: JwtService,
         private configService: ConfigService,
-        private readonly redisService: RedisService,
     ) {
         //
     }
@@ -357,10 +354,6 @@ export class AuthController {
                         user._id,
                     ),
                 ]);
-            await this.redisService.setUserAccessToken(
-                user._id,
-                accessToken.token,
-            );
             this.auditLogService.createAuditLog({
                 module: AuditLogModules.USER,
                 action: AuditLogActions.RESET_PASSWORD,
@@ -369,68 +362,6 @@ export class AuthController {
                 createdBy: user._id,
             });
             return new SuccessResponse({ profile, accessToken, refreshToken });
-        } catch (error) {
-            throw new InternalServerErrorException(error);
-        }
-    }
-
-    // check if account is being logged in
-    @Post('/pre-login')
-    async preLoginCheck(
-        @Body(new JoiValidationPipe(loginSchema)) body: ILoginForm,
-    ) {
-        try {
-            const user = await this.authService.getUserByEmail(body.email, [
-                'password',
-                'accessModules',
-            ]);
-            // check if user exists?
-            if (!user) {
-                const message = await this.i18n.translate(
-                    'auth.errors.user.notFound',
-                );
-                return new ErrorResponse(
-                    HttpStatus.INVALID_USERNAME_OR_PASSWORD,
-                    message,
-                    [],
-                );
-            }
-
-            if (!user?.accessModules?.length) {
-                const message = await this.i18n.translate(
-                    'auth.errors.auth.accessModule.notExist',
-                );
-                return new ErrorResponse(
-                    HttpStatus.USER_HAVE_NOT_PERMISSION,
-                    message,
-                    [],
-                );
-            }
-            // check password is correct?
-            if (user.password) {
-                const isCorrectPassword = await bcrypt.compare(
-                    body.password,
-                    user.password,
-                );
-                console.log(body.password);
-
-                if (!isCorrectPassword) {
-                    const message = await this.i18n.translate(
-                        'auth.errors.user.notFound',
-                    );
-                    return new ErrorResponse(
-                        HttpStatus.INVALID_USERNAME_OR_PASSWORD,
-                        message,
-                        [],
-                    );
-                }
-            }
-
-            const redisUserAccessToken =
-                await this.redisService.getUserAccessToken(user._id);
-            return new SuccessResponse({
-                isBeingLoggedIn: !!redisUserAccessToken,
-            });
         } catch (error) {
             throw new InternalServerErrorException(error);
         }
@@ -497,11 +428,6 @@ export class AuthController {
                 refreshToken,
                 isExistOtherTokenUnexpired,
             } = await this.authService.login(returnedUser, permissions);
-
-            await this.redisService.setUserAccessToken(
-                user._id,
-                accessToken.token,
-            );
             this.auditLogService.createAuditLog({
                 module: AuditLogModules.AUTH,
                 action: AuditLogActions.LOGIN,
@@ -571,10 +497,6 @@ export class AuthController {
                     token,
                     permissions,
                 );
-            await this.redisService.setUserAccessToken(
-                user._id,
-                accessToken.token,
-            );
 
             return new SuccessResponse({
                 profile: user,
@@ -603,9 +525,6 @@ export class AuthController {
                 );
                 return new ErrorResponse(HttpStatus.UNAUTHORIZED, message, []);
             }
-            await this.redisService.deleteAccessToken(
-                new ObjectId(loginUser._id),
-            );
             this.accessLogService.updateAccessLog(body.accessLogId, {
                 logoutAt: new Date(),
                 updatedBy: loginUser._id,
@@ -708,10 +627,6 @@ export class AuthController {
                         user._id,
                     ),
                 ]);
-            await this.redisService.setUserAccessToken(
-                user._id,
-                accessToken.token,
-            );
             this.auditLogService.createAuditLog({
                 module: AuditLogModules.USER,
                 action: AuditLogActions.ACTIVE,
@@ -905,11 +820,6 @@ export class AuthController {
             const result = await this.authService.logoutOtherDevice(
                 req.loginUser._id,
                 body,
-            );
-
-            await this.redisService.setUserAccessToken(
-                req.loginUser?._id,
-                req.accessToken,
             );
 
             return new SuccessResponse(result);

@@ -10,14 +10,12 @@ import { extractToken } from '../helpers/commonFunctions';
 import { IUserToken } from '../interfaces';
 import { ConfigService } from '@nestjs/config';
 import { UserTokenTypes } from '../constants';
-import { RedisService } from '../services/redis.service';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
     constructor(
         private jwtService: JwtService,
         private configService: ConfigService,
-        private readonly redisService: RedisService,
     ) {}
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
@@ -29,12 +27,6 @@ export class AuthenticationGuard implements CanActivate {
             token,
             request.authorizationType === UserTokenTypes.REFRESH_TOKEN,
         )) as IUserToken;
-        const redisUserAccessToken = await this.redisService.getUserAccessToken(
-            request.loginUser._id,
-        );
-        if (token !== redisUserAccessToken) {
-            throw new UnauthorizedException();
-        }
         request.accessToken = token;
         return true;
     }

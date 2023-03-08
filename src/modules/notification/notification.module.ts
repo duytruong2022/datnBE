@@ -41,7 +41,6 @@ import {
     ProjectGroup,
     ProjectGroupSchema,
 } from '../project-group/mongo-schemas/project-group.schema';
-import { RedisService } from 'src/common/services/redis.service';
 
 @Module({
     imports: [
@@ -84,7 +83,6 @@ import { RedisService } from 'src/common/services/redis.service';
         JwtService,
         AuditLogMongoService,
         UserMongoService,
-        RedisService,
     ],
 })
 export class NotificationModule {

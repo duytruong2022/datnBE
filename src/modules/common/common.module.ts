@@ -41,7 +41,6 @@ import {
     ProjectGroupSchema,
 } from '../project-group/mongo-schemas/project-group.schema';
 import { ProjectGroupMongoService } from './services/project-group.mongo.service';
-import { RedisService } from 'src/common/services/redis.service';
 
 @Module({
     imports: [
@@ -85,7 +84,6 @@ import { RedisService } from 'src/common/services/redis.service';
         JwtService,
         ProjectMongoService,
         ProjectProfileMongoService,
-        RedisService,
     ],
 })
 export class CommonModule {}

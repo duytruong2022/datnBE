@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
-import { RedisService } from 'src/common/services/redis.service';
 import {
     ProjectLog,
     ProjectLogSchema,
@@ -16,7 +15,7 @@ import { ProjectLogMongoService } from './services/project-log.service';
         ]),
     ],
     controllers: [ProjectLogController],
-    providers: [ProjectLogMongoService, JwtService, RedisService],
+    providers: [ProjectLogMongoService, JwtService],
 })
 export class ProjectLogModule {
     //

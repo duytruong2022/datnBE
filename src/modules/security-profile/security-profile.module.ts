@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
-import { RedisService } from 'src/common/services/redis.service';
 import {
     AuditLog,
     AuditLogSchema,
@@ -27,12 +26,7 @@ import { SecurityProfileService } from './services/security-profiles.mongo.servi
         ]),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     ],
-    providers: [
-        SecurityProfileService,
-        JwtService,
-        AuditLogMongoService,
-        RedisService,
-    ],
+    providers: [SecurityProfileService, JwtService, AuditLogMongoService],
     controllers: [SecurityProfileController],
 })
 export class SecurityProfileModule {}

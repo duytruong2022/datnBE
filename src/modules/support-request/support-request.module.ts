@@ -51,7 +51,6 @@ import {
     SecurityProfile,
     SecurityProfileSchema,
 } from '../security-profile/mongo-schemas/security-profile.schema';
-import { RedisService } from 'src/common/services/redis.service';
 
 @Module({
     imports: [
@@ -81,7 +80,6 @@ import { RedisService } from 'src/common/services/redis.service';
         DownloadCSVGateway,
         SendGridService,
         UserMongoService,
-        RedisService,
     ],
 })
 export class SupportRequestModule {}

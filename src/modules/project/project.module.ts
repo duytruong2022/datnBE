@@ -66,7 +66,6 @@ import {
 } from './mongo-schemas/activity-code-value.schema';
 import { ActivityCodeMongoService } from './services/activity-code.mongo.service';
 import { ActivityCodeController } from './controllers/activity-code.controller';
-import { RedisService } from 'src/common/services/redis.service';
 import {
     BaselineConfiguration,
     BaselineConfigurationSchema,
@@ -195,7 +194,6 @@ import {
         BaselinePlanningMongoService,
         BaselineConfigurationMongoService,
         ActivityCodeMongoService,
-        RedisService,
         ProjectFieldSettingMongoService,
         CalendarConfigMongoService,
         CalendarMongoService,

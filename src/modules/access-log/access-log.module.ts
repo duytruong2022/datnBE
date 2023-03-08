@@ -4,7 +4,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AccessLogController } from './access-log.controller';
 import { AccessLog, AccessLogSchema } from './mongo-schemas/access-log.schema';
 import { AccessLogMongoService } from './services/access-log.mongo.service';
-import { RedisService } from 'src/common/services/redis.service';
 
 @Module({
     imports: [
@@ -13,7 +12,7 @@ import { RedisService } from 'src/common/services/redis.service';
         ]),
     ],
     controllers: [AccessLogController],
-    providers: [AccessLogMongoService, JwtService, RedisService],
+    providers: [AccessLogMongoService, JwtService],
 })
 export class AccessLogModule {
     //

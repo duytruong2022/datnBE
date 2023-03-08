@@ -51,7 +51,6 @@ import {
 } from '../project/mongo-schemas/planning.schema';
 import { ProjectTask, TaskSchema } from '../project/mongo-schemas/task.schema';
 
-import { RedisService } from 'src/common/services/redis.service';
 import { BaselineConfigurationMongoService } from '../project/services/baseline-configuration.mongo.service';
 import {
     BaselineConfiguration,
@@ -116,7 +115,6 @@ import {
         ProjectLogMongoService,
         UserMongoService,
         ProjectMongoService,
-        RedisService,
     ],
 })
 export class ProjectGroupModule {

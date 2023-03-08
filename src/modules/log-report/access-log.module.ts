@@ -16,7 +16,6 @@ import {
     SupportRequestSchema,
 } from '../support-request/mongo-schemas/support-request.schema';
 import { User, UserSchema } from '../user/mongo-schemas/user.schema';
-import { RedisService } from 'src/common/services/redis.service';
 
 @Module({
     imports: [
@@ -32,7 +31,7 @@ import { RedisService } from 'src/common/services/redis.service';
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     ],
     controllers: [LogReportController],
-    providers: [LogReportMongoService, JwtService, RedisService],
+    providers: [LogReportMongoService, JwtService],
 })
 export class LogReportModule {
     //
