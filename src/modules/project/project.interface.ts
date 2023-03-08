@@ -104,10 +104,7 @@ export interface IGetUserDefineFiledQueryString {
 
 export interface IPlanningListQuery extends ICommonListQuery {
     orderBy: PlanningOrderBy;
-    planningIds: ObjectId[];
-    allowSynthesizedPlanning?: string;
-    projectId?: ObjectId;
-    path?: string;
+    keyword?: string;
 }
 
 export interface IUpdateTaskBody {

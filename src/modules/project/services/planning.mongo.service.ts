@@ -345,27 +345,19 @@ export class PlanningMongoService {
                 page = DEFAULT_FIRST_PAGE,
                 orderBy = DEFAULT_ORDER_BY,
                 orderDirection = DEFAULT_ORDER_DIRECTION,
-                planningIds = [],
-                allowSynthesizedPlanning = 'true',
+                keyword = '',
             } = query;
             const mongoQuery = {
                 ...softDeleteCondition,
                 projectId,
             };
 
-            if (planningIds.length) {
+            if (keyword.length) {
                 Object.assign(mongoQuery, {
                     ...mongoQuery,
-                    _id: {
-                        $in: planningIds,
-                    },
-                });
-            }
-            if (allowSynthesizedPlanning === 'false') {
-                Object.assign(mongoQuery, {
-                    ...mongoQuery,
-                    isSynthesized: {
-                        $ne: true,
+                    name: {
+                        $regex: `.*${keyword}.*`,
+                        $options: 'i',
                     },
                 });
             }

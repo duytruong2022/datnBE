@@ -6,7 +6,6 @@ import { BaseSchema } from 'src/common/mongo-schemas/base.shema';
 import {
     SupportRequestCategory,
     SupportRequestPriority,
-    SupportRequestSite,
 } from '../support-request.constant';
 export type SupportRequestDocument = SupportRequest & Document;
 
@@ -58,14 +57,6 @@ export class SupportRequest extends BaseSchema {
         trim: true,
     })
     version: string;
-
-    @Prop({
-        required: true,
-        type: String,
-        trim: true,
-        enum: Object.values(SupportRequestSite),
-    })
-    site: SupportRequestSite;
 
     @Prop({
         required: false,

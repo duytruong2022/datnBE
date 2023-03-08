@@ -1431,12 +1431,10 @@ export class UserController {
                 });
             }
             await this.userService.updateUser(id, updateData);
-            if (body?.notificationId) {
-                await this.notificationService.approveNotification(
-                    new ObjectId(body.notificationId),
-                    new ObjectId(req.loginUser?._id),
-                );
-            }
+            await this.notificationService.approveNotification(
+                new ObjectId(id),
+                new ObjectId(req.loginUser?._id),
+            );
             const message = {
                 to: user.email,
                 from: this.configService.get(ConfigKey.SENDGRID_SENDER),

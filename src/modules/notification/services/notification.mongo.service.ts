@@ -328,11 +328,11 @@ export class NotificationMongoService {
         }
     }
 
-    async approveNotification(notificationId: ObjectId, updatedBy: ObjectId) {
+    async approveNotification(userId: ObjectId, updatedBy: ObjectId) {
         try {
             await this.notificationModel.updateOne(
                 {
-                    _id: notificationId,
+                    fromUserId: userId,
                     ...softDeleteCondition,
                 },
                 { status: NotificationStatus.APPROVED, updatedBy },

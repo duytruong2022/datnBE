@@ -364,9 +364,6 @@ export class SupportRequestService {
                     'support-request.sendEmail.subject',
                 ),
                 email: body.email,
-                site: this.i18n.translate(
-                    `support-request.exportData.fieldData.${body.site}`,
-                ),
                 category: this.i18n.translate(
                     `support-request.exportData.fieldData.${body.category}`,
                 ),

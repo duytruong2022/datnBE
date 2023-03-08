@@ -10,7 +10,6 @@ import {
 import { INPUT_NAME_MAX_LENGTH } from '../user/user.constant';
 import {
     SupportRequestCategory,
-    SupportRequestSite,
     SupportRequestOrderBy as SupportRequestOrderBy,
     SupportRequestPriority,
 } from './support-request.constant';
@@ -32,9 +31,6 @@ export const supportRequestSchema = Joi.object().keys({
         .valid(...Object.values(SupportRequestPriority))
         .required(),
     version: Joi.string().max(INPUT_TEXT_MAX_LENGTH).optional().allow(null, ''),
-    site: Joi.string()
-        .valid(...Object.values(SupportRequestSite))
-        .required(),
     object: Joi.string().max(INPUT_TEXT_MAX_LENGTH).optional().allow(null, ''),
     reference: Joi.string()
         .max(INPUT_TEXT_MAX_LENGTH)
@@ -79,9 +75,6 @@ export const supportRequestListQuerySchema = Joi.object().keys({
     categories: Joi.array()
         .items(Joi.string().valid(...Object.values(SupportRequestCategory)))
         .optional(),
-    sites: Joi.array()
-        .items(Joi.string().valid(...Object.values(SupportRequestSite)))
-        .optional(),
     priorities: Joi.array()
         .items(Joi.string().valid(...Object.values(SupportRequestPriority)))
         .optional(),
@@ -96,9 +89,6 @@ export const exportSupportRequestListQuerySchema = Joi.object().keys({
         .optional(),
     categories: Joi.array()
         .items(Joi.string().valid(...Object.values(SupportRequestCategory)))
-        .optional(),
-    sites: Joi.array()
-        .items(Joi.string().valid(...Object.values(SupportRequestSite)))
         .optional(),
     priorities: Joi.array()
         .items(Joi.string().valid(...Object.values(SupportRequestPriority)))

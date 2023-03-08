@@ -204,14 +204,14 @@ export const TaskFieldSchema = {
     durationType: Joi.string()
         .valid(...Object.values(TaskDuration))
         .allow(null),
-    remainingDuration: Joi.number().required().allow(null),
+    remainingDuration: Joi.number().optional().allow(null),
 
     percentageCompletion: Joi.string()
         .valid(...Object.values(TaskPercentCompleteType))
-        .required()
+        .optional()
         .allow(null),
-    manualComplete: Joi.number().allow(null).required(),
-    rules: Joi.number().required().allow(null),
+    manualComplete: Joi.number().allow(null).optional(),
+    rules: Joi.number().optional().allow(null),
     additionalFields: Joi.object().unknown(true),
     calendarId: Joi.isObjectId().optional().allow(null, ''),
     path: Joi.string().max(INPUT_TEXT_MAX_LENGTH).optional().allow(null, ''),
@@ -222,92 +222,9 @@ export const CreateTaskSchema = Joi.object().keys({
     ...TaskFieldSchema,
 });
 
-export const UpdateTaskSchema = Joi.object()
-    .keys({
-        ...TaskFieldSchema,
-        ganttId: Joi.string().max(INPUT_TEXT_MAX_LENGTH).required(),
-    })
-    .custom((body, helpers) => {
-        const { primaryConstraintDate, primaryConstraints, start, finish } =
-            body;
-
-        if (!primaryConstraintDate) {
-            return true;
-        }
-        if (
-            primaryConstraints === TaskConstraint.SNET &&
-            moment(start).isBefore(moment(primaryConstraintDate))
-        ) {
-            return helpers.message(
-                'custom_project-planning.task.error.constraint.start.snet',
-                {
-                    args: {
-                        date: moment(primaryConstraintDate).fmFullTimeString(),
-                    },
-                },
-            );
-        }
-        if (
-            primaryConstraints === TaskConstraint.SNLT &&
-            moment(start).isAfter(moment(primaryConstraintDate))
-        ) {
-            return helpers.message(
-                'custom_project-planning.task.error.constraint.start.snlt',
-                {
-                    args: {
-                        date: moment(primaryConstraintDate).fmFullTimeString(),
-                    },
-                },
-            );
-        }
-        if (
-            primaryConstraints === TaskConstraint.MSO &&
-            !moment(start).isSame(moment(primaryConstraintDate))
-        ) {
-            return helpers.message(
-                'custom_project-planning.task.error.constraint.start.mso',
-                {
-                    args: {
-                        date: moment(primaryConstraintDate).fmFullTimeString(),
-                    },
-                },
-            );
-        }
-        if (!primaryConstraintDate) {
-            return true;
-        }
-        if (
-            primaryConstraints === TaskConstraint.FNET &&
-            moment(finish).isBefore(moment(primaryConstraintDate))
-        ) {
-            return helpers.message('constraint.finish.fnet', {
-                args: {
-                    date: moment(primaryConstraintDate).fmFullTimeString(),
-                },
-            });
-        }
-        if (
-            primaryConstraints === TaskConstraint.FNLT &&
-            moment(finish).isAfter(moment(primaryConstraintDate))
-        ) {
-            return helpers.message('constraint.finish.fnlt', {
-                args: {
-                    date: moment(primaryConstraintDate).fmFullTimeString(),
-                },
-            });
-        }
-        if (
-            primaryConstraints === TaskConstraint.MFO &&
-            !moment(finish).isSame(moment(primaryConstraintDate))
-        ) {
-            return helpers.message('constraint.finish.mfo', {
-                args: {
-                    date: moment(primaryConstraintDate).fmFullTimeString(),
-                },
-            });
-        }
-        return true;
-    });
+export const UpdateTaskSchema = Joi.object().keys({
+    ...TaskFieldSchema,
+});
 
 export const BulkUpdateTaskSchema = Joi.object().keys({
     items: Joi.array()
@@ -336,27 +253,6 @@ export const PlanningSchema = {
         .regex(Regex.FILE_NAME)
         .max(INPUT_TEXT_MAX_LENGTH)
         .required(),
-    currency: Joi.string()
-        .valid(...Object.values(CurrencyType))
-        .required(),
-    durationType: Joi.string()
-        .valid(...Object.values(TaskDuration))
-        .required(),
-    durationFormat: Joi.string()
-        .valid(...Object.values(TaskDurationFormat))
-        .required(),
-    defaultDuration: Joi.number()
-        .min(INTEGER_POSITIVE_MIN_VALUE)
-        .max(INTEGER_POSITIVE_MAX_VALUE)
-        .required(),
-    activityType: Joi.string()
-        .valid(...Object.values(TaskType))
-        .required(),
-    defaultCalendar: Joi.isObjectId().required(),
-    percentageCompletion: Joi.string()
-        .valid(...Object.values(TaskPercentCompleteType))
-        .required(),
-    autoScheduling: Joi.boolean().required(),
 };
 
 export const UpdatePlanningSchema = Joi.object().keys({
@@ -997,7 +893,7 @@ export const ConfigDateSchema = Joi.object().keys({
     repeatType: Joi.string()
         .valid(...Object.values(CalendarConfigRepeatTypes))
         .required(),
-    workingDayTypeId: Joi.isObjectId().required(),
+    workingDayTypeId: Joi.string().allow('', null).optional(),
     date: Joi.date().format(DateFormat.YYYY_MM_DD_HYPHEN).required(),
     timezone: Joi.string().required(),
 });

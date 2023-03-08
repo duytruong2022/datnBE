@@ -42,7 +42,6 @@ import {
 import { renameSync } from 'fs';
 import { IFileBody } from 'src/common/interfaces';
 import { v4 as uuidv4 } from 'uuid';
-import { SENDGRID_SEND_MAIL_SUCCESS_CODE } from '../user/user.constant';
 
 @Controller('/support-request')
 @UseGuards(AuthenticationGuard)
@@ -143,21 +142,7 @@ export class SupportRequestController {
                 createdBy: new ObjectId(req?.loginUser?._id),
             });
 
-            // send email support request
-            const response =
-                await this.supportRequestService.sendSupportRequestEmail(body);
-            if (response[0].statusCode === SENDGRID_SEND_MAIL_SUCCESS_CODE) {
-                return new SuccessResponse(createSupportRequest);
-            } else {
-                const message = await this.i18n.translate(
-                    'support-request.sendEmail.error',
-                );
-                return new ErrorResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    message,
-                    [],
-                );
-            }
+            return new SuccessResponse(createSupportRequest);
         } catch (error) {
             throw new InternalServerErrorException(error);
         }
@@ -197,21 +182,8 @@ export class SupportRequestController {
                 description: '',
                 createdBy: new ObjectId(req?.loginUser?._id),
             });
-            // send email support request
-            const response =
-                await this.supportRequestService.sendSupportRequestEmail(body);
-            if (response[0].statusCode === SENDGRID_SEND_MAIL_SUCCESS_CODE) {
-                return new SuccessResponse(updateSupportRequest);
-            } else {
-                const message = await this.i18n.translate(
-                    'support-request.sendEmail.error',
-                );
-                return new ErrorResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    message,
-                    [],
-                );
-            }
+
+            return new SuccessResponse(updateSupportRequest);
         } catch (error) {
             throw new InternalServerErrorException(error);
         }

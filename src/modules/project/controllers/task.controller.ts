@@ -329,64 +329,6 @@ export class TaskController {
                 ]);
             }
 
-            if (existsTask.ganttId !== body.ganttId) {
-                if (existsTask.isSynthesizedToOtherTask) {
-                    const message = await this.i18n.t(
-                        'project-planning.task.synthesizedTask',
-                    );
-                    return new ErrorResponse(HttpStatus.BAD_REQUEST, message, [
-                        {
-                            errorCode: HttpStatus.UNPROCESSABLE_ENTITY,
-                            message,
-                            key: 'ganttId',
-                        },
-                    ]);
-                }
-                if (existsTask.delegatedTo) {
-                    const message = await this.i18n.t(
-                        'project-planning.task.delegatedTask',
-                    );
-                    return new ErrorResponse(HttpStatus.BAD_REQUEST, message, [
-                        {
-                            errorCode: HttpStatus.UNPROCESSABLE_ENTITY,
-                            message,
-                            key: 'ganttId',
-                        },
-                    ]);
-                }
-                if (existsTask.clonedFromTaskId) {
-                    const message = await this.i18n.t(
-                        'project-planning.task.clonedTask',
-                    );
-                    return new ErrorResponse(HttpStatus.BAD_REQUEST, message, [
-                        {
-                            errorCode: HttpStatus.UNPROCESSABLE_ENTITY,
-                            message,
-                            key: 'ganttId',
-                        },
-                    ]);
-                }
-
-                const ganttIdExist =
-                    await this.taskService.checkTaskGanttIdExistInProject(
-                        body.ganttId,
-                        planning.projectId,
-                        _id,
-                    );
-                if (ganttIdExist) {
-                    const message = await this.i18n.t(
-                        'project-planning.exists.ganttId',
-                    );
-                    return new ErrorResponse(HttpStatus.BAD_REQUEST, message, [
-                        {
-                            errorCode: HttpStatus.ITEM_ALREADY_EXIST,
-                            key: 'ganttId',
-                            message,
-                        },
-                    ]);
-                }
-            }
-
             if (body.parentId) {
                 const parent = await this.taskService.getTaskById(
                     new ObjectId(body.parentId),

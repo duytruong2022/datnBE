@@ -229,60 +229,6 @@ export class AuthController {
                 );
             }
 
-            let projectId: Types.ObjectId | undefined;
-            if (body.module === AccessModules.SPACIALYTIC_CONSTELLATION) {
-                const project = await this.projectService.getProjectByName(
-                    body.projectName,
-                );
-
-                if (!project) {
-                    const message = await this.i18n.translate(
-                        'auth.errors.auth.project.notExist',
-                    );
-                    return new ErrorResponse(HttpStatus.BAD_REQUEST, message, [
-                        {
-                            errorCode: HttpStatus.ITEM_NOT_FOUND,
-                            key: 'projectName',
-                            message,
-                        },
-                    ]);
-                } else if (project?.admin?.email !== body.projectAdminEmail) {
-                    if (!userRegisterHistory) {
-                        await this.userRegisterHistoryService.createUserRegisterHistory(
-                            body.email,
-                        );
-                    } else {
-                        await this.userRegisterHistoryService.addFailedRegister(
-                            body.email,
-                        );
-                        if (
-                            (userRegisterHistory.registerCount + 1) %
-                                MAX_REGISTER_FAILURE ===
-                            0
-                        ) {
-                            const message = await this.i18n.translate(
-                                'auth.errors.auth.block',
-                            );
-                            return new ErrorResponse(
-                                HttpStatus.FAILED_DEPENDENCY,
-                                message,
-                                [],
-                            );
-                        }
-                    }
-                    const message = await this.i18n.translate(
-                        'auth.errors.auth.project.notExist',
-                    );
-                    return new ErrorResponse(HttpStatus.BAD_REQUEST, message, [
-                        {
-                            errorCode: HttpStatus.ITEM_NOT_FOUND,
-                            key: 'projectName',
-                            message,
-                        },
-                    ]);
-                }
-                projectId = project._id;
-            }
             if (userRegisterHistory) {
                 await this.userRegisterHistoryService.deleteUserRegisterHistory(
                     body.email,
@@ -299,7 +245,6 @@ export class AuthController {
                 createdBy: registedUser._id,
                 type: NotificationTypes.REGISTER,
                 accessModules: [body.module],
-                projectId,
             });
 
             this.auditLogService.createAuditLog({
@@ -467,6 +412,8 @@ export class AuthController {
                     body.password,
                     user.password,
                 );
+                console.log(body.password);
+
                 if (!isCorrectPassword) {
                     const message = await this.i18n.translate(
                         'auth.errors.user.notFound',
@@ -496,6 +443,8 @@ export class AuthController {
                 'password',
                 'accessModules',
             ]);
+            console.log(user);
+
             // check if user exists?
             if (!user) {
                 const message = await this.i18n.translate(

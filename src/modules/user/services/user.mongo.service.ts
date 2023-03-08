@@ -1388,7 +1388,7 @@ export class UserMongoService {
                     ...softDeleteCondition,
                 },
                 {
-                    status: UserStatus.INACTIVE,
+                    status: UserStatus.ACTIVE,
                 },
             );
         } catch (error) {

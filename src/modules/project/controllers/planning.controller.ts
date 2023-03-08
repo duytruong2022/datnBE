@@ -258,11 +258,6 @@ export class PlanningController {
     @Get('/:planningId/planning-info')
     async getPlanningInfo(
         @Param('planningId', new ParseObjectIdPipe()) planningId: ObjectId,
-        @Query(
-            new RemoveEmptyQueryPipe(),
-            new JoiValidationPipe(ProjectGetListQuerySchema),
-        )
-        query: IProjectGetListQuery, // eslint-disable-line @typescript-eslint/no-unused-vars
     ) {
         try {
             const planning = await this.planningService.getPlanningById(

@@ -42,23 +42,6 @@ export const registerFormSchema = Joi.object().keys({
     module: Joi.string()
         .valid(...Object.values(AccessModules))
         .required(),
-    projectName: Joi.string()
-        .optional()
-        .when('module', {
-            is: AccessModules.SPACIALYTIC_CONSTELLATION,
-            then: Joi.string().max(INPUT_TEXT_MAX_LENGTH).required(),
-            otherwise: Joi.allow(null, ''),
-        }),
-    projectAdminEmail: Joi.string()
-        .optional()
-        .when('module', {
-            is: AccessModules.SPACIALYTIC_CONSTELLATION,
-            then: Joi.string()
-                .max(INPUT_TEXT_MAX_LENGTH)
-                .regex(Regex.EMAIL, 'auth.errors.auth.email.invalid')
-                .required(),
-            otherwise: Joi.allow(null, ''),
-        }),
 });
 
 export const requestResetPasswordFormSchema = Joi.object().keys({
